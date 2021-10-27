@@ -20,7 +20,9 @@ async function handler(req, res) {
 
         const db = client.db();
 
-        const existingUser = db.collection('users').findOne({ email: email });
+        const existingUser = await db
+            .collection('users')
+            .findOne({ email: email });
 
         if (existingUser) {
             client.close();
